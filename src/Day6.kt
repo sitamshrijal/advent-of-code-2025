@@ -1,6 +1,7 @@
 fun main() {
     fun part1(input: List<String>): Long {
-        val operations = input.last().trim().split("""\s+""".toRegex()).map {
+        val regex = """\s+""".toRegex()
+        val operations = input.last().split(regex).map {
             when (it) {
                 "+" -> Operation.ADD
                 "*" -> Operation.MULTIPLY
@@ -8,8 +9,8 @@ fun main() {
             }
         }
         val numbers = buildList {
-            input.dropLast(1).mapIndexed { i, row ->
-                val splits = row.trim().split("""\s+""".toRegex()).map { it.toLong() }
+            input.dropLast(1).forEach { row ->
+                val splits = row.split(regex).map { it.toLong() }
                 add(splits)
             }
         }
